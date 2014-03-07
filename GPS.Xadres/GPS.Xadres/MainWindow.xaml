@@ -1,0 +1,189 @@
+﻿<Window x:Class="GPS.Xadres.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Xadres="clr-namespace:GPS.Xadres"
+        Title="MainWindow"  Height="600" Width="600">
+
+    <Window.Resources>
+
+
+        <!-- Chekerboard pattern brush -->
+        <DrawingBrush x:Key="Checkerboard" Stretch="None" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="White">
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,2,2" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="Black">
+                        <GeometryDrawing.Geometry>
+                            <GeometryGroup>
+                                <RectangleGeometry Rect="0,0,1,1" />
+                                <RectangleGeometry Rect="1,1,1,1" />
+                            </GeometryGroup>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+
+        <!-- style para peças -->
+
+        <Style x:Key="ChessPieceStyle" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Peao}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/Koala.jpg" />
+                        <!--http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_Branco_Peao_T.png-->
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Torre}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/chess_piece_white_rook_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Cavalo}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/chess_piece_white_knight_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Bispo}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/chess_piece_white_bishop_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Rainha}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_white_queen_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Rei}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Branco}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_white_king_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Peao}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/Tulips.jpg" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Torre}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_black_rook_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Cavalo}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_black_knight_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Bispo}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_black_bishop_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Rainha}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_black_queen_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.Rei}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.Preto}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="http://www.wpclipart.com/recreation/games/chess/chess_set_1/chess_piece_black_king_T.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Tipo}" Value="{x:Static Xadres:TipoPeca.LugarValido}"/>
+                        <Condition Binding="{Binding Jogador}" Value="{x:Static Xadres:Jogador.GM}"/>
+                    </MultiDataTrigger.Conditions>
+                    <MultiDataTrigger.Setters>
+                        <Setter Property="Image.Source" Value="Imagens/circle-outline-512.png" />
+                    </MultiDataTrigger.Setters>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+    <!-- Main Window Content -->
+    <Grid>
+        <!--<StackPanel  Panel.ZIndex="10" Margin="20,20,0,0" HorizontalAlignment="Left">
+        </StackPanel>-->
+        <Viewbox Width="500" Height="500">
+
+            <ItemsControl Name="ChessBoard"  ItemsSource="{Binding}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="8" Height="8" Background="{StaticResource Checkerboard}" MouseDown="Canvas_MouseDown_1" Name="CanvasXadres" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="1" Height="1" MouseDown="GridMouseDown1">
+                            <Image Width="0.8" Height="0.8" Style="{StaticResource ChessPieceStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left" Value="{Binding Pos.X}" />
+                        <Setter Property="Canvas.Top" Value="{Binding Pos.Y}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+
+            </ItemsControl>
+
+
+        </Viewbox>
+
+    </Grid>
+</Window>
